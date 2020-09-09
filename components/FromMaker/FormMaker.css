@@ -1,0 +1,80 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+}
+
+.makeFormDiv{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    border: 1px solid black;
+    flex-direction: column;
+    width:25%;
+    height:50%;
+}
+
+.makeFormDiv button{
+    width: 15%;
+    border-radius: 5px;
+    background-color:rgb(91, 119, 241);
+    color:white;
+    font-size:1em;
+}
+
+.makeFormDiv form  div{
+    border-radius:8px;
+    min-width: 10vw;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 5% 50% 35% 10%;
+    align-items: center;
+    width:100%;
+}
+
+.makeFormDiv form svg{
+    cursor:pointer;
+    stroke: rgb(230, 71, 71);
+}
+
+.makeFormDiv > *, .makeFormDiv form > *{
+    margin: 1% 0 1% 0;
+}
+
+.makeFormDiv form input[type="text"]{
+    width:100%;
+}
+
+.makeFormDiv input::placeholder{
+    padding: 0 0 0 4%;
+}
+
+#editable{
+    width:80%;
+    min-width: auto;
+    height:10%;
+    padding: 0 0 0 5%;
+    border:2px solid black;
+    border-radius:8px;
+}
+
+#editable:empty::before{
+    text-align:center;
+    cursor:text;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.formNameDiv:empty::before{
+    content: "What is your form name?";
+}
+
+.formDescriptionDiv:empty::before{
+    content: "What is the description?";
+}
