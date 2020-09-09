@@ -3,11 +3,12 @@ import { Switch, Route } from "react-router-dom"
 
 export default function Form(props) {
     return (
-        props.formJSON.map((el, index) => {
+        props.localStr.map((el, index) => {
             return (
                 <Switch>
                     <Route exact path={"/" + el.name}>
                         <div className="indFormEl">
+                            <h2>{el.name}</h2>
                             {el.fields.map(el => {
                                 return (
                                     <input
@@ -17,10 +18,9 @@ export default function Form(props) {
                                     ></input>
                                 )
                             })}
+                            <h3>{el.description}</h3>
+                            <p>{el.createdAt}</p>
                         </div>
-
-                        <h3>{el.description}</h3>
-                        <p>{el.createdAt}</p>
                     </Route>
                 </Switch>
             )

@@ -72,9 +72,19 @@ body{
 }
 
 .formNameDiv:empty::before{
-    content: "What is your form name?";
+    content: "What is the name of this form?";
 }
 
 .formDescriptionDiv:empty::before{
-    content: "What is the description?";
+    content: "What describes this form?";
+}
+
+.indFormEl{
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.indFormEl input{
+    display:flex;
+    flex-direction: column;
 }
