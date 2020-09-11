@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import Form from "./Form";
-import FormList from "./FormList"
+import FormList from "./FormList";
+import MakeFormPopUp from "./MakeFormPopUp.js";
 
 export default class App extends Component {
     constructor() {
@@ -14,7 +15,8 @@ export default class App extends Component {
                 "creatAt": "",
                 "fields": []
             },
-            localStr: []
+            localStr: [],
+            dialog: false
         }
     }
 
@@ -23,8 +25,8 @@ export default class App extends Component {
     }
 
     addInput = () => {
-        this.setState(prevState => (prevState.formElements.push(
-            <div>
+        this.setState(prevState => prevState.formElements.push(
+            <div key={prevState.formElements.length}>
                 <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-file-minus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z" />
                     <path fillRule="evenodd" d="M5.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z" />
@@ -39,12 +41,10 @@ export default class App extends Component {
                     <option>Number</option>
                 </select>
             </div>
-
-        ), prevState))
+        ))
     }
 
     addForm = event => {
-        event.persist()
         const inputDivs = document.querySelectorAll(".makeFormDiv form  div")
         const formName = document.querySelector(".formNameDiv").firstChild === null ? "" : document.querySelector(".formNameDiv").firstChild.data
         const formDescription = document.querySelector(".formDescriptionDiv").firstChild === null ? "" : document.querySelector(".formDescriptionDiv").firstChild.data
@@ -80,32 +80,25 @@ export default class App extends Component {
         })
     }
 
+    handlePopUp = event => {
+        if (event.target.getAttribute("class") === "makeFormDiv" || event.target.getAttribute("id") === "popDown") this.setState({ dialog: false })
+        if (event.target.innerHTML === "Create New Form") this.setState({ dialog: true })
+    }
+
+
     render() {
         return (
             <Router>
+                
                 <div>
-
-                    <Switch>
-                        <Route exact path="/form-olustur">
-                            <div className="makeFormDiv">
-                                <div id="editable" className="formNameDiv" contentEditable="true"></div>
-                                <form>
-                                    {this.state.formElements}
-                                </form>
-                                <button onClick={this.addInput}>New Input</button>
-                                <button type="submit" onClick={this.addForm} >Create</button>
-                                <div id="editable" className="formDescriptionDiv" contentEditable="true"></div>
-                            </div>
-                        </Route>
-                    </Switch>
                     <Link to="/"><button>Homepage</button></Link>
-                    <Link to="/form-olustur"><button>Create New Form</button></Link>
-
+                    <button onClick={this.handlePopUp}>Create New Form</button>
                     {Boolean(JSON.parse(localStorage.getItem("forms"))) && <FormList localStr={this.state.localStr} />}
                     {Boolean(JSON.parse(localStorage.getItem("forms"))) && <Form localStr={this.state.localStr} />}
-
+                    <MakeFormPopUp data={this.state} handlePopUp={this.handlePopUp} addForm={this.addForm} addInput={this.addInput} />
                 </div>
-            </Router>
+
+            </Router >
         )
     }
 }

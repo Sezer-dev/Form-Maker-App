@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Link } from "react-router-dom";
 
 export default function FormList(props) {
-    console.log(props.localStr);
     return (
         <Route exact path="/">
 
@@ -12,7 +11,7 @@ export default function FormList(props) {
                         return (
                             <tr key={index}>
                                 <td>{el.name}</td>
-                                <td><Link to={"/" + el.name}><button >Show Me</button></Link></td>
+                                <td><Link to={"/form/" + el.name}><button >Show Me</button></Link></td>
                             </tr>
                         )
                     })}

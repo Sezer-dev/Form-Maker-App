@@ -10,49 +10,34 @@ body{
     height:100vh;
 }
 
+#root:first-child{
+    position:relative;
+}
+
 .makeFormDiv{
-    display: flex;
-    justify-items: center;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
     align-items: center;
-    border: 1px solid black;
-    flex-direction: column;
-    width:25%;
-    height:50%;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0,0,0,0.2)
 }
 
-.makeFormDiv button{
-    width: 15%;
-    border-radius: 5px;
-    background-color:rgb(91, 119, 241);
-    color:white;
-    font-size:1em;
+.dialog-content{
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    border-radius: 6%;
+    overflow: auto;
+    background-color:whitesmoke;
+    
 }
 
-.makeFormDiv form  div{
-    border-radius:8px;
-    min-width: 10vw;
-    display: grid;
-    justify-items: center;
-    grid-template-columns: 5% 50% 35% 10%;
-    align-items: center;
-    width:100%;
-}
-
-.makeFormDiv form svg{
-    cursor:pointer;
-    stroke: rgb(230, 71, 71);
-}
-
-.makeFormDiv > *, .makeFormDiv form > *{
-    margin: 1% 0 1% 0;
-}
-
-.makeFormDiv form input[type="text"]{
-    width:100%;
-}
-
-.makeFormDiv input::placeholder{
-    padding: 0 0 0 4%;
+#popDown{
+    position: absolute;
+    top:5%;
+    righT:5%;
 }
 
 #editable{
