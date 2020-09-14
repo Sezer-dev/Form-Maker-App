@@ -11,7 +11,7 @@ export default function FormList(props) {
                         return (
                             <tr key={index}>
                                 <td>{el.name}</td>
-                                <td><Link to={"/form/" + el.name}><button >Show Me</button></Link></td>
+                                <td><Link to={"/form-" + el.name}><button >Show Me</button></Link></td>
                             </tr>
                         )
                     })}
