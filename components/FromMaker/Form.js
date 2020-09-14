@@ -6,7 +6,7 @@ export default function Form(props) {
         props.localStr.map((el, index) => {
             return (
                 <Switch key={index}>
-                    <Route exact path={"/form/" + el.name}>
+                    <Route exact path={"/form-" + el.name}>
                         <div className="indFormEl">
                             <h2>{el.name}</h2>
                             {el.fields.map((el, index) => {
@@ -20,7 +20,7 @@ export default function Form(props) {
                                 )
                             })}
                             <h3>{el.description}</h3>
-                            <p>{el.createdAt}</p>
+                            <p>{ "Created At: " + el.createdAt}</p>
                         </div>
                     </Route>
                 </Switch>
